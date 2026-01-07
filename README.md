@@ -1,1 +1,37 @@
-# music-player
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Music Player</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="player">
+  <h2 id="song-title">Song Title</h2>
+  <p id="song-info">Artist | Album</p>
+
+  <audio id="audio"></audio>
+
+  <!-- Progress Bar -->
+  <input type="range" id="progress" value="0">
+
+  <!-- Controls -->
+  <div class="controls">
+    <button onclick="prevSong()">⏮</button>
+    <button onclick="playPause()">▶️ / ⏸</button>
+    <button onclick="nextSong()">⏭</button>
+  </div>
+
+  <!-- Volume -->
+  <label>Volume</label>
+  <input type="range" min="0" max="1" step="0.1" onchange="setVolume(this.value)">
+
+  <!-- Playlist -->
+  <ul id="playlist"></ul>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
