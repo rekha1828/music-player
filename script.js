@@ -1,4 +1,4 @@
-// Playlist data
+// Song list (static playlist)
 let songs = [
   {
     title: "Song One",
@@ -28,7 +28,7 @@ let playlist = document.getElementById("playlist");
 
 let currentSong = 0;
 
-// Load song
+/* Load selected song */
 function loadSong(index) {
   currentSong = index;
   audio.src = songs[index].path;
@@ -37,39 +37,43 @@ function loadSong(index) {
   audio.play();
 }
 
-// Play / Pause
+/* Play / Pause */
 function playPause() {
-  if (audio.paused) audio.play();
-  else audio.pause();
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
 }
 
-// Next & Previous
+/* Next song */
 function nextSong() {
   currentSong = (currentSong + 1) % songs.length;
   loadSong(currentSong);
 }
 
+/* Previous song */
 function prevSong() {
   currentSong = (currentSong - 1 + songs.length) % songs.length;
   loadSong(currentSong);
 }
 
-// Progress bar update
+/* Update progress bar */
 audio.addEventListener("timeupdate", () => {
   progress.value = (audio.currentTime / audio.duration) * 100;
 });
 
-// Seek
+/* Seek song */
 progress.addEventListener("input", () => {
   audio.currentTime = (progress.value / 100) * audio.duration;
 });
 
-// Volume
+/* Volume control */
 function setVolume(value) {
   audio.volume = value;
 }
 
-// Build playlist
+/* Create playlist dynamically */
 songs.forEach((song, index) => {
   let li = document.createElement("li");
   li.innerText = song.title;
@@ -77,5 +81,5 @@ songs.forEach((song, index) => {
   playlist.appendChild(li);
 });
 
-// Load first song
+/* Load first song on start */
 loadSong(0);
